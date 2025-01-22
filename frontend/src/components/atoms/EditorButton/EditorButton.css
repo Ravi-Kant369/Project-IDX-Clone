@@ -1,0 +1,17 @@
+.editor-button{
+    outline: none;
+    background-color: #383857;
+    font-size: 16px;
+    height: 33px;
+    border-left: none;
+    border-bottom: none;
+    border-top: 2px solid #f56c0a;
+    color: white;
+    min-width: 100px;
+    padding: 5px 10px 5px 10px;
+    font-family: cursive;
+
+}
+
+
+  
