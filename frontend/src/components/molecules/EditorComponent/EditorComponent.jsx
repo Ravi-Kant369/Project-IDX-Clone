@@ -43,7 +43,7 @@ export const EditorComponent = () => {
       return (
         <>
         <Editor
-          height={'90vh'}
+          height={'100vh'}
           width={'100%'}
           defaultLanguage="javascript"
           defaultValue="// Welcome to the Playground!"
