@@ -24,12 +24,30 @@
 import Editor from '@monaco-editor/react';
 
 import { useActiveFileTabStore } from '../../../store/activeFileTabStore';
+import { useEditorSocketStore } from '../../../store/editorSocketStore';
+import { extensionToFileType } from '../../../utils/extensionToFileType';
 
 export const EditorComponent = () => {
-
   
-
+   let timerId = null;
+   
    const {activeFileTab, } = useActiveFileTabStore();
+
+   const {editorSocket} = useEditorSocketStore();
+
+   function handleChange(value){
+           if(timerId!==null){
+            clearTimeout(timerId);
+           }
+            timerId=setTimeout(()=>{
+            const editorContent = value;
+            console.log("Sending the writefile event")
+            editorSocket.emit("writeFile",{
+              data:editorContent,
+              pathToFileOrFolder:activeFileTab.path
+          })
+        },2000);  
+   }
     
   
     const loadTheme = async (monaco) => {
@@ -54,12 +72,13 @@ export const EditorComponent = () => {
           height={'100vh'}
           width={'100%'}
           defaultLanguage="javascript"
-          defaultValue="// Welcome to the Playground!"
+          defaultValue={undefined}
           options={{
             fontSize: 18,
             fontFamily: 'monospace',
           }}
-           
+          language={extensionToFileType(activeFileTab?.extension)}
+          onChange={handleChange}
           value={activeFileTab?.value? activeFileTab.value:'//Welcome to the playground'}
           
 
