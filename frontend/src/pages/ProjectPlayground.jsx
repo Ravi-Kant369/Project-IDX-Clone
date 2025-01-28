@@ -5,16 +5,24 @@ import { EditorButton } from "../components/atoms/EditorButton/EditorButton";
 import { TreeStructure } from "../components/organisms/TreeStructure";
 import { useEffect } from "react";
 import { useTreeStructureStore } from "../store/treeStructureStore";
-
+import { useEditorSocketStore } from "../store/editorSocketStore";
+import { io } from "socket.io-client";
 
 export const ProjectPlayground = ()=>{
 
     const {projectId:projectIdFromURL} = useParams();
+
     const {projectId,setProjectId} = useTreeStructureStore();
+
+    const {setEditorSocket} = useEditorSocketStore();
 
     useEffect(()=>{
        setProjectId(projectIdFromURL);
-    },[setProjectId,projectIdFromURL]);
+       const editorSocketConn = io(`${import.meta.env.VITE_BACKEND_URL}/editor`,{
+         query: `projectId=${projectIdFromURL}`
+       });
+       setEditorSocket(editorSocketConn);
+    },[setProjectId,projectIdFromURL,setEditorSocket]);
 
 
 
