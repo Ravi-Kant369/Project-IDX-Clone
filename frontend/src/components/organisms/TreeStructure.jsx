@@ -13,7 +13,7 @@ export const TreeStructure = () =>{
        isOpen:isFileContextOpen,
        x:fileContextX,
        y:fileContextY
-     }=useFileContextMenuStore();
+     } = useFileContextMenuStore();
 
     useEffect(()=>{
         if(treeStructure){

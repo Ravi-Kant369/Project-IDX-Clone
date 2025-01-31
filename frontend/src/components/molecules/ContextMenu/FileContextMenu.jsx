@@ -30,12 +30,10 @@ export const FileContextMenu =({
               setIsOpen(false);
 
            }}
+           className='fileContextOptionsWrapper'
            style={{
-            position:"absolute",
-            width:"95px",
             left:x,
             top:y,
-            border:"1.5px solid black"
 
            }}
         >

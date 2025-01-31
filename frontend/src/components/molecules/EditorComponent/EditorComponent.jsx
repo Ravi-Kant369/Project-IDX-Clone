@@ -79,20 +79,17 @@ export const EditorComponent = () => {
           }}
           language={extensionToFileType(activeFileTab?.extension)}
           onChange={handleChange}
-          value={activeFileTab?.value? activeFileTab.value:'//Welcome to the playground'}
+          value={activeFileTab?.value?activeFileTab.value:'//Welcome to the playground!!!'}
           
 
           onMount={(editor, monaco) => {
             // Call the loadTheme function when Monaco editor is mounted
             loadTheme(monaco);
           }}
-         
-         
-         
+
 
         />
         </>
       );
   
 };
-

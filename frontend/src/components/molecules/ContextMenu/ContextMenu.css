@@ -12,3 +12,9 @@
 .fileContextButton:hover{
     background-color:#628291;
 }
+
+.fileContextOptionsWrapper {
+    width: 95px;
+    position: fixed;
+    border:1.5px solid black;
+}
