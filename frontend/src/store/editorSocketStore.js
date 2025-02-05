@@ -27,6 +27,8 @@ export const useEditorSocketStore = create((set)=>({
             projectTreeStructureSetter();
         })
 
+        //incomingSocket?.on("getPortSuccess",())
+
         set({
             editorSocket:incommingSocket
         });

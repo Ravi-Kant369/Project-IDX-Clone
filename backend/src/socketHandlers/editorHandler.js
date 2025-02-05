@@ -2,6 +2,8 @@
 
 import { error } from 'console';
 import fs from 'fs/promises';
+import { get } from 'http';
+import { getContainerPort } from '../containers/handleContainerCreate.js';
 
 export const handleEditorSocketEvents = (socket,editorNamespace) =>{
     
@@ -106,6 +108,16 @@ socket.on("deleteFolder", async({pathToFileOrFolder})=>{
      })
     }
 });
+
+socket.on("getPort",async({containerName})=>{
+      const port =await getContainerPort(containerName);
+      console.log("port data",port);
+      socket.emit("getPortSuccess",{
+          data:port
+      });
+});
+
+ 
 
 
 // socket.on("renameFile", async ({currentPath, newPath}) => {
