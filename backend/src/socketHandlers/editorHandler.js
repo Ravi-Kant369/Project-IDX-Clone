@@ -113,7 +113,7 @@ socket.on("getPort",async({containerName})=>{
       const port =await getContainerPort(containerName);
       console.log("port data",port);
       socket.emit("getPortSuccess",{
-          data:port
+          port:port
       });
 });
 

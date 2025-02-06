@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { useActiveFileTabStore } from "./activeFileTabStore";
-import {useTreeStructureStore} from './treeStructureStore'
+import {useTreeStructureStore} from './treeStructureStore';
+import { usePortStore } from "./portStrore";
 
 export const useEditorSocketStore = create((set)=>({
     editorSocket:null,
@@ -9,6 +10,7 @@ export const useEditorSocketStore = create((set)=>({
         // here we are accessing the zustand store inside another zustand store 
         const activeFileTabSetter = useActiveFileTabStore.getState().setActiveFileTab;
         const projectTreeStructureSetter = useTreeStructureStore.getState().setTreeStructure;
+        const portSetter = usePortStore.getState().setPort;
 
         incommingSocket?.on("readFileSuccess", (data) =>{
             console.log("Read file success",data);
@@ -27,7 +29,10 @@ export const useEditorSocketStore = create((set)=>({
             projectTreeStructureSetter();
         })
 
-        //incomingSocket?.on("getPortSuccess",())
+        incommingSocket?.on("getPortSuccess",({port})=>{
+                console.log("Port is",port);
+                portSetter(port);
+        });
 
         set({
             editorSocket:incommingSocket

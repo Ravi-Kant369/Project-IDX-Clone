@@ -69,7 +69,7 @@ export const EditorComponent = () => {
       return (
         <>
         <Editor
-          height={'100vh'}
+          
           width={'100%'}
           defaultLanguage="javascript"
           defaultValue={undefined}
